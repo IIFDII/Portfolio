@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+
+  <title>Last Stand | Lewis Lincoln</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top portfolio-nav">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="index.html">Lewis <span>Lincoln</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto gap-lg-3">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main class="page-top">
+  <section class="container section-pad">
+    <a class="back-link" href="projects.html">← Back to projects</a>
+    <div class="row g-5 align-items-start mt-2">
+      <div class="col-lg-7">
+        <p class="eyebrow">Gameplay Prototype</p>
+        <h1 class="display-5 fw-bold">Last Stand</h1>
+        <p class="lead text-secondary">
+          A multiplayer outpost defence gameplay prototype featuring input buffering, policy-gated actions,
+          weapon interaction, AI damage, and planned integration with the inventory plugin.
+        </p>
+        <div class="video-placeholder my-4">Gameplay Demo Embed Placeholder</div>
+
+        <h2 class="h4 mt-5">Technical Highlights</h2>
+        <ul class="feature-list">
+          <li>Input buffering system for responsive player actions.</li>
+          <li>Policy-gated action execution using UObject-based action data.</li>
+          <li>Replicated multiplayer gameplay behaviour.</li>
+          <li>Weapons that spawn effects and apply damage to AI enemies.</li>
+          <li>Planned loot tables and deployable turret defence systems.</li>
+        </ul>
+
+        <h2 class="h4 mt-5">Portfolio Purpose</h2>
+        <p class="text-secondary">This project demonstrates gameplay integration: input, combat, networking, enemy interaction, and future inventory/loot systems working inside a cohesive playable slice.</p>
+      </div>
+
+      <aside class="col-lg-5">
+        <div class="info-card sticky-lg-top">
+          <h2 class="h4">Project Summary</h2>
+          <dl class="project-meta">
+            <dt>Engine</dt><dd>Unreal Engine 5</dd>
+            <dt>Implementation</dt><dd>Blueprint-focused systems</dd>
+            <dt>Networking</dt><dd>Replicated multiplayer prototype</dd>
+            <dt>Genre Direction</dt><dd>Outpost defence / horde survival</dd>
+            <dt>Status</dt><dd>In development / demo slice</dd>
+          </dl>
+          <hr>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="badge text-bg-warning">Blueprint</span>
+            <span class="badge text-bg-success">Multiplayer</span>
+            <span class="badge text-bg-danger">Combat</span>
+            <span class="badge text-bg-info">AI</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+</main>
+<footer class="site-footer py-4">
+  <div class="container d-flex flex-column flex-md-row justify-content-between gap-2">
+    <span>© <span id="year"></span> Lewis Lincoln</span>
+    <span class="text-secondary">Unreal Engine Gameplay Programmer Portfolio</span>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>
