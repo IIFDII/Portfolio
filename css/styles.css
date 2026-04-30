@@ -104,7 +104,6 @@ a {
   padding: 2rem;
   position: relative;
   overflow: hidden;
-  glyph-orientation-vertical: auto;
 }
 
 .panel-line {
