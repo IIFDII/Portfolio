@@ -67,12 +67,12 @@
 
         <h2 class="h4 mt-5">System Purpose</h2>
         <p class="text-secondary">
-          The system was design so that it could meet the needs of any project by use of gameplay tags, it means the system can scale, and rapidly also.
+          The system was designed so that it could meet the needs of any project by use of gameplay tags, it means the system can scale, and rapidly also.
           It enables designers to create tags, map actions, and not worry about dependencies. So, while out the box, the plugin is relatively simple,
           it solves real gameplay problems and more importantly, it does so at scale.
         </p>
         <p class="text-secondary">
-          Communication is done through, interfaces rather than hard references. Where as closely related classes make use of "friend class" specifiers.
+          Communication is done through, interfaces rather than hard references. Whereas closely related classes make use of "friend class" specifiers.
           The system, is built to handle effective debugging, by checking a root tag, comparing that with the tags on any player,
           and assessing which debugging channels are required. If there is an issue, or a successful execution, the debugging tool outputs both
           to the screen and as a custom log entry to inform the user. This makes debugging light work.
@@ -88,8 +88,10 @@
 
           Since input and actions are gameplay tag driven, the policy gating component can easily assess a request and handle any rejections, for example:
           Say you don't want the player to interact while jumping, simply set interaction attempt as a blocked action on the jump state.
-          Change your mind? simply remove the interacting intention tag. This is system-wide design on an expert level, you do not need to re-write code,
-          simply change and modifiy the tags on any given state.
+          Change your mind? simply remove the interacting intention tag. Because input and actions are driven through Gameplay Tags,
+          the policy-gating component can evaluate requests and reject actions based on the current gameplay state. 
+          For example, interaction can be blocked while jumping by adding the interaction intent tag to the blocked actions for that state.
+          If the design changes later, the rule can be adjusted through data rather than rewriting code.
         </p>
         <hr class="mb-5" style = "border-color: var(--accent-2);">
         <img src="media/PolicySystem/InterfaceCommunication_Resized.png" alt ="Modular Unreal Engine Framework with Data Assets">
@@ -103,7 +105,7 @@
           Let's assume we have two scenarios, an interactive driven cutscene level with a character, and our normal levels where the player can run around it.
           One approach is to write the code for 2 different levels, so that excess code is not loaded, or at risk of being executed causing bugs.
           Another way is with the system plugin I have designed here. We can keep the same character, swap the buffer settings out with a new set to handle
-          and load only the relevant code that is needed. So we can effectively limit or extend capability accross different settings in a modular designer friend data-driven way.
+          and load only the relevant code that is needed. So we can effectively limit or extend capability across different settings in a modular designer-friendly data-driven way.
         </p>
 
         <h2 class="h4 mt-5">Code Access</h2>
