@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+
+  <title>Policy Gating System | Lewis Lincoln</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top portfolio-nav">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="index.html">Lewis <span>Lincoln</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto gap-lg-3">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main class="page-top">
+  <section class="container section-pad">
+    <a class="back-link" href="projects.html">← Back to projects</a>
+    <div class="row g-5 align-items-start mt-2">
+      <div class="col-lg-7">
+        <h1 class="display-5 fw-bold">UE5 C++/Blueprint Hybrid Multiplayer Policy Gating, Action Binding and Input Buffering</h1>
+        <p class="lead text-secondary">
+          A modular, data-driven policy-gating plugin for Unreal Engine 5, focused on gameplay data to drive permission,
+          action bindings through mapping and callbacks, soft referencing and async asset loading, and multiplayer-ready replication.
+          This is entirely built using gameplay tags to drive logic.
+        </p>
+        <div class="video-placeholder my-4">
+          <iframe width="750" height="400" src="https://www.youtube.com/embed/Wq_pQoSXHFU" title="Policy And Input Buffering Demo"
+                  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+        </div>
+
+        <h2 class="h4 mt-5">Technical Highlights</h2>
+        <ul class="feature-list">
+          <li>Input buffering system for responsive player actions.</li>
+          <li>Policy-gated action execution using UObject-based action data.</li>
+          <li>Replicated multiplayer - Server-side design.</li>
+          <li>Enhanced debugging - featuring debugging by gameplay tag look-up and filtering.</li>
+          <li>Soft referencing/Async loading.</li>
+          <li>Gameplay tag driven</li>
+          <li>C++/Blueprint hybrid</li>
+        </ul>
+
+        <p class="text-secondary">
+          The system is built with reliance on gameplay tag driven logic, this is perfect for reducing dependencies, by producing a targeted hierarchical way of assessing data.
+          The policy is checked and if allowed, it is then sent to the buffer, if it cannot execute then it will store the action to execute that stored action once available.
+          The system buffers input and executes it when conditions allow, improving responsiveness. It is also responsible for checking if it is an input that is supposed to be buffered or not.
+        </p>
+
+        <hr class="mb-5" style = "border-color: var(--accent-2);">
+        <img src="media/PolicySystem/AsyncTasksAndLambdaBindings_Resized.png" alt ="Modular Unreal Engine Framework with Data Assets">
+        <hr class="mb-5" style = "border-color: var(--accent-2);">
+
+        <h2 class="h4 mt-5">System Purpose</h2>
+        <p class="text-secondary">
+          The system was design so that it could meet the needs of any project by use of gameplay tags, it means the system can scale, and rapidly also.
+          It enables designers to create tags, map actions, and not worry about dependencies. So, while out the box, the plugin is relatively simple,
+          it solves real gameplay problems and more importantly, it does so at scale.
+        </p>
+        <p class="text-secondary">
+          Communication is done through, interfaces rather than hard references. Where as closely related classes make use of "friend class" specifiers.
+          The system, is built to handle effective debugging, by checking a root tag, comparing that with the tags on any player,
+          and assessing which debugging channels are required. If there is an issue, or a successful execution, the debugging tool outputs both
+          to the screen and as a custom log entry to inform the user. This makes debugging light work.
+          If something fails at any point, any designer can see exactly why and can do so very quickly.
+        </p>
+
+        <p class="text-secondary">
+          What about replication and UObject binding? how about that? Well, the InputBuffer component stores a Data Asset, this asset can be tweaked and manipulated,
+          you could have different buffers for different things, for example, perhaps in combat you'd like more time, but when climbing, you'd prefer less time.
+          This is easily achieved through this binding, you can set up a buffer for each case, swap/change it at run time.
+          The settings asset, stores a map of executable actions, based on what the player intends to do. In short, Player input -> Input buffer -> Policy gate -> UObject.
+          The settings also store a container of gameplay tags too, so it knows which actions can be stored, which ones need to execute immediately without being buffered.
+
+          Since input and actions are gameplay tag driven, the policy gating component can easily assess a request and handle any rejections, for example:
+          Say you don't want the player to interact while jumping, simply set interaction attempt as a blocked action on the jump state.
+          Change your mind? simply remove the interacting intention tag. This is system-wide design on an expert level, you do not need to re-write code,
+          simply change and modifiy the tags on any given state.
+        </p>
+        <hr class="mb-5" style = "border-color: var(--accent-2);">
+        <img src="media/PolicySystem/InterfaceCommunication_Resized.png" alt ="Modular Unreal Engine Framework with Data Assets">
+        <hr class="mb-5" style = "border-color: var(--accent-2);">
+
+        <p class="text-secondary">
+          Finally, everything it is set up to use soft references where possible, so that actions can be async loaded at runtime when needed. This means,
+          loading times can be done on a separate game thread, which is to say that the user will not feel the impacts. This also is the standard best practice way of working.
+          By using soft reference data, memory allocation is reduced, as it will only take up memory when it is actually loaded.
+
+          Let's assume we have two scenarios, an interactive driven cutscene level with a character, and our normal levels where the player can run around it.
+          One approach is to write the code for 2 different levels, so that excess code is not loaded, or at risk of being executed causing bugs.
+          Another way is with the system plugin I have designed here. We can keep the same character, swap the buffer settings out with a new set to handle
+          and load only the relevant code that is needed. So we can effectively limit or extend capability accross different settings in a modular designer friend data-driven way.
+        </p>
+
+        <h2 class="h4 mt-5">Code Access</h2>
+        <p class="text-secondary">
+          Full source can be shared privately with hiring teams on request. Public presentation includes demos, architecture notes, and selected snippets.
+          You are welcome to download a playable build of the files these are freely available. 👉:
+          <a href="https://drive.google.com/file/d/1yqqn3HafKaZLF42ABfgPUKZxIObO4xrY/view?usp=sharing" target="_blank"
+             rel="noopener noreferrer">Google Drive Link</a>
+        </p>
+      </div>
+
+      <aside class="col-lg-5">
+        <div class="info-card sticky-lg-top">
+          <h2 class="h4">Project Summary</h2>
+          <dl class="project-meta">
+            <dt>Engine</dt><dd>Unreal Engine 5</dd>
+            <dt>Language</dt><dd>C++</dd>
+            <dt>UI</dt><dd>UMG</dd>
+            <dt>Networking</dt><dd>Replication, Server-side Design</dd>
+          </dl>
+          <hr>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="badge text-bg-warning">C++/Blueprint Hybrid</span>
+            <span class="badge text-bg-success">Multiplayer</span>
+            <span class="badge text-bg-danger">Gameplay tag driven</span>
+            <span class="badge text-bg-warning">Server-side Design</span>
+            <span class="badge text-bg-primary">Policy Gating</span>
+            <span class="badge text-bg-primary">Input Buffering</span>
+            <span class="badge text-bg-danger">Soft referencing/Async loading</span>
+            <span class="badge text-bg-success">Enhanced debugging tag driven logic</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+</main>
+<footer class="site-footer py-4">
+  <div class="container d-flex flex-column flex-md-row justify-content-between gap-2">
+    <span>© <span id="year"></span> Lewis Lincoln</span>
+    <span class="text-secondary">Lewis Lincoln - Unreal Engine Gameplay Programmer</span>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>
